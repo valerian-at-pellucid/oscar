@@ -1,0 +1,11 @@
+Introduction
+------------
+
+What is Scampi ?
+Scampi stands for "SCala Math Programming Interface".
+It is a set of tools implemented in Scala to solve Optimization and Operations Research problems.
+Currently the content of Scampi is:
+- cp: a package to solve constraint programming problems
+- linprog: a package to write LP/MIP models with interface to glpk, lp_solve, gurobi and cplex
+- dfo: a package to solve derivative free optimization problems
+- des: a package to model discrete event simulation problems
