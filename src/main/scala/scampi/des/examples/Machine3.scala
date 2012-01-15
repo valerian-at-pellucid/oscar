@@ -7,7 +7,7 @@
  * Contributors:
  *      www.n-side.com
  ******************************************************************************/
-package scampi.des.models
+package scampi.des.examples
 
 
 import scampi.des.engine._

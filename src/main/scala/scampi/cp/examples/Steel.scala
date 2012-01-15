@@ -85,14 +85,6 @@ object Steel extends CPModel{
 		val rnd = new Random(0)
 
 		cp.minimization(obj)
-		
-		/*
-		// ask to have a LNS every 50 backtracks
-		cp.relaxAfter(50) {
-			//fix randomly 90% of the slabs to the position of the current best solution
-			cp.post(for (i <- Slabs; if rnd.nextInt(100) <= 90) yield x(i) == xsol(i))
-		}
-		*/
 
 		cp.solveAll subjectTo {
 			cp.add(binpacking(x,weight,l),Strong)
