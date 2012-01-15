@@ -45,18 +45,21 @@ trait LPModel extends AbstractLPModel {
 		  case LPSolverLib.glpk => new GlpkLP()
 		  case _  => new LPSolve()		
 		}
-		
-		println("solver lib:"+solverLib)
 
 		def getReducedCost(varId : Int) : Double = solver.getReducedCost(varId)
 
 		def addColumn(objCoef : Double, constraints : Array[LPConstraint], lhsConstraintCoefs : Array[Double]) : LPVar = {
-			val colVar = new LPVar(this,"column var")
+		    val colVar = new LPVar(this,"column var")
+			objective += (objCoef * colVar)
 			solver.addColumn(objCoef, constraints.map(_.index), lhsConstraintCoefs)
-			solver.solveModel()
+			solveModel()
 			colVar 
 		}
 
+	}
+	
+	object LPSolver {
+	  def apply(solverLib: LPSolverLib.Value = LPSolverLib.lp_solve): LPSolver = new LPSolver(solverLib)
 	}
 }
 

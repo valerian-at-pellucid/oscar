@@ -33,7 +33,7 @@ object CuttingStock extends LPModel with MIPModel {
 	  val shelf =  Array(20, 45, 50, 55, 75)
 	  val demand = Array(48, 35, 24, 10,  8)
 
-	  val lp = new LPSolver(LPSolverLib.lp_solve)
+	  val lp = LPSolver(LPSolverLib.lp_solve)
 	  var C : Array[Column] = Array()
 	  for (s <- Shelves) {
 	 	  val config = Array.tabulate(nbShelves)(_ => 0)
@@ -54,8 +54,8 @@ object CuttingStock extends LPModel with MIPModel {
 	  // Pricing Problem
 	  var mip : MIPSolver = null
 	  do {
-		  mip = new MIPSolver()
-		  val use = Array.tabulate(nbShelves)(_ => new MIPVar(mip,"use",0 to boardWidth))
+		  mip = MIPSolver()
+		  val use = Array.tabulate(nbShelves)(_ => MIPVar(mip,"use",0 to boardWidth))
 		  val cost = Array.tabulate(nbShelves)(meet(_).getDual)
 
 		  mip.minimize(1 - sum(Shelves)(s => cost(s) * use(s))) subjectTo {
@@ -64,9 +64,10 @@ object CuttingStock extends LPModel with MIPModel {
 
 		  val x = lp.addColumn(1,meet toArray,use.map(_.getValue)) //create a new variable by introducing a new column
 		  
-		  C = C :+ new Column(x, use.map(_.getValue.toInt))
+		  C = C :+ new Column(x, use.map(_.getValue.toInt))		  
 		  
 		  println("master obj:" + lp.getObjectiveValue)
+		  
 
 	  } while(mip.getObjectiveValue < 0)
 

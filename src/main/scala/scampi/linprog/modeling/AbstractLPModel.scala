@@ -344,7 +344,9 @@ trait AbstractLPModel extends Algebra {
 	def getObjectiveValue() : Double = {
 			objective.value match {
 				case Some(v) => v
-				case None => 0	
+				case None => {
+				  0 
+				}	
 			}
 	}
 	

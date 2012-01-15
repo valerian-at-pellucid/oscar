@@ -42,6 +42,11 @@ trait MIPModel extends AbstractLPModel {
 		}		
 		
 	}
+	
+	object MIPVar { 
+	 def apply(mip: MIPSolver, name : String, lbound: Double = 0.0, ubound: Double = Double.PositiveInfinity): MIPVar = new MIPVar(mip,name,lbound,ubound) 
+	 def apply(mip : MIPSolver, name : String,  domain : Range): MIPVar =  new MIPVar(mip,name,domain)
+	}
 
 	class MIPSolver(solverLib: LPSolverLib.Value = LPSolverLib.lp_solve) extends AbstractLPSolver() {
 
@@ -59,5 +64,9 @@ trait MIPModel extends AbstractLPModel {
 			}
 		}
 
+	}
+	
+	object MIPSolver { 
+	 def apply(solverLib: LPSolverLib.Value = LPSolverLib.lp_solve): MIPSolver = new MIPSolver(solverLib) 
 	}
 }

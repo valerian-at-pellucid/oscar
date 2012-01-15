@@ -61,9 +61,6 @@ class LPSolve extends AbstractLP{
     }
     
   	def addColumn(obj : Double, row : Array[Int], coef : Array[Double]) {
-  		    for (i <- 1 to coef.size) {
-  		     print(coef(i-1))
-  		   }
   		if (!closed) {
   			println("cannot add a column in a non closed solver")
   		} else {
@@ -89,13 +86,13 @@ class LPSolve extends AbstractLP{
     }
     
     def solveModel() : LPStatus.Value = {
-        lp.writeLp("model_lp_solve.lp")
     	lp.solve match {
     		 case LpSolve.OPTIMAL => 
     		 	    sol = lp.getPtrVariables() 
     		 	    objectiveValue = lp.getObjective()
     		 	    LPStatus.OPTIMAL
     		 case LpSolve.SUBOPTIMAL =>
+    		 	    objectiveValue = lp.getObjective()
     		 	    LPStatus.SUBOPTIMAL
     		 case LpSolve.INFEASIBLE =>
     		 	    LPStatus.INFEASIBLE
@@ -107,10 +104,12 @@ class LPSolve extends AbstractLP{
     }
     
     def getValue(colId : Int) : Double = {
-    	 if (sol == null || colId < 0 || colId >= nbCols)
+    	 if (sol == null || colId < 0 || colId >= nbCols) {
     		 0.0
-    	 else
+         }
+    	 else {
     		 sol(colId)
+    	 }
     }
     
   	def getObjectiveValue() : Double = {
