@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<problem>
+<resources nb="6">
+  <resource id="1" capa="4"/>
+  <resource id="2" capa="1"/>
+  <resource id="3" capa="1"/>
+  <resource id="4" capa="2"/>
+  <resource id="5" capa="2"/>
+  <resource id="6" capa="2"/>
+</resources>
+<tasks nb="21">
+  <task id="1" req1="0" req2="0" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="2" req1="1" req2="1" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="3" req1="1" req2="0" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="4" req1="1" req2="1" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="5" req1="1" req2="1" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="6" req1="1" req2="0" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="7" req1="1" req2="1" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="8" req1="1" req2="1" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="9" req1="1" req2="0" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="10" req1="1" req2="1" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="11" req1="1" req2="1" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="12" req1="1" req2="0" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="13" req1="1" req2="1" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="14" req1="1" req2="0" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="15" req1="1" req2="1" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="16" req1="1" req2="0" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="17" req1="1" req2="1" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="18" req1="1" req2="0" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="19" req1="1" req2="0" req3="0" req4="0" req5="0" req6="0"/>
+  <task id="20" req1="1" req2="0" req3="1" req4="1" req5="1" req6="0"/>
+  <task id="21" req1="0" req2="0" req3="0" req4="0" req5="0" req6="0"/>
+</tasks>
+<precedences>
+   <precedence id="1" t1="1" t2="2" latency="0" distance="0"/>
+   <precedence id="2" t1="1" t2="3" latency="0" distance="0"/>
+   <precedence id="3" t1="1" t2="4" latency="0" distance="0"/>
+   <precedence id="4" t1="1" t2="5" latency="0" distance="0"/>
+   <precedence id="5" t1="1" t2="6" latency="0" distance="0"/>
+   <precedence id="6" t1="1" t2="7" latency="0" distance="0"/>
+   <precedence id="7" t1="1" t2="8" latency="0" distance="0"/>
+   <precedence id="8" t1="1" t2="9" latency="0" distance="0"/>
+   <precedence id="9" t1="1" t2="10" latency="0" distance="0"/>
+   <precedence id="10" t1="1" t2="11" latency="0" distance="0"/>
+   <precedence id="11" t1="1" t2="12" latency="0" distance="0"/>
+   <precedence id="12" t1="1" t2="13" latency="0" distance="0"/>
+   <precedence id="13" t1="1" t2="14" latency="0" distance="0"/>
+   <precedence id="14" t1="1" t2="15" latency="0" distance="0"/>
+   <precedence id="15" t1="1" t2="16" latency="0" distance="0"/>
+   <precedence id="16" t1="1" t2="17" latency="0" distance="0"/>
+   <precedence id="17" t1="1" t2="18" latency="0" distance="0"/>
+   <precedence id="18" t1="1" t2="19" latency="0" distance="0"/>
+   <precedence id="19" t1="1" t2="20" latency="0" distance="0"/>
+   <precedence id="20" t1="1" t2="21" latency="0" distance="0"/>
+   <precedence id="21" t1="2" t2="3" latency="3" distance="0"/>
+   <precedence id="22" t1="2" t2="4" latency="1" distance="0"/>
+   <precedence id="23" t1="2" t2="21" latency="1" distance="0"/>
+   <precedence id="24" t1="2" t2="20" latency="0" distance="0"/>
+   <precedence id="25" t1="2" t2="14" latency="0" distance="0"/>
+   <precedence id="26" t1="3" t2="4" latency="1" distance="0"/>
+   <precedence id="27" t1="3" t2="21" latency="1" distance="0"/>
+   <precedence id="28" t1="3" t2="20" latency="0" distance="0"/>
+   <precedence id="29" t1="4" t2="21" latency="1" distance="0"/>
+   <precedence id="30" t1="4" t2="20" latency="0" distance="0"/>
+   <precedence id="31" t1="4" t2="14" latency="0" distance="0"/>
+   <precedence id="32" t1="5" t2="6" latency="3" distance="0"/>
+   <precedence id="33" t1="5" t2="7" latency="1" distance="0"/>
+   <precedence id="34" t1="5" t2="21" latency="1" distance="0"/>
+   <precedence id="35" t1="5" t2="20" latency="0" distance="0"/>
+   <precedence id="36" t1="5" t2="14" latency="0" distance="0"/>
+   <precedence id="37" t1="6" t2="7" latency="1" distance="0"/>
+   <precedence id="38" t1="6" t2="21" latency="1" distance="0"/>
+   <precedence id="39" t1="6" t2="20" latency="0" distance="0"/>
+   <precedence id="40" t1="7" t2="21" latency="1" distance="0"/>
+   <precedence id="41" t1="7" t2="20" latency="0" distance="0"/>
+   <precedence id="42" t1="7" t2="14" latency="0" distance="0"/>
+   <precedence id="43" t1="8" t2="9" latency="3" distance="0"/>
+   <precedence id="44" t1="8" t2="10" latency="1" distance="0"/>
+   <precedence id="45" t1="8" t2="21" latency="1" distance="0"/>
+   <precedence id="46" t1="8" t2="20" latency="0" distance="0"/>
+   <precedence id="47" t1="8" t2="14" latency="0" distance="0"/>
+   <precedence id="48" t1="9" t2="10" latency="1" distance="0"/>
+   <precedence id="49" t1="9" t2="21" latency="1" distance="0"/>
+   <precedence id="50" t1="9" t2="20" latency="0" distance="0"/>
+   <precedence id="51" t1="10" t2="21" latency="1" distance="0"/>
+   <precedence id="52" t1="10" t2="20" latency="0" distance="0"/>
+   <precedence id="53" t1="10" t2="14" latency="0" distance="0"/>
+   <precedence id="54" t1="11" t2="12" latency="3" distance="0"/>
+   <precedence id="55" t1="11" t2="13" latency="1" distance="0"/>
+   <precedence id="56" t1="11" t2="21" latency="1" distance="0"/>
+   <precedence id="57" t1="11" t2="20" latency="0" distance="0"/>
+   <precedence id="58" t1="11" t2="14" latency="0" distance="0"/>
+   <precedence id="59" t1="12" t2="13" latency="1" distance="0"/>
+   <precedence id="60" t1="12" t2="21" latency="1" distance="0"/>
+   <precedence id="61" t1="12" t2="20" latency="0" distance="0"/>
+   <precedence id="62" t1="13" t2="21" latency="1" distance="0"/>
+   <precedence id="63" t1="13" t2="20" latency="0" distance="0"/>
+   <precedence id="64" t1="13" t2="14" latency="0" distance="0"/>
+   <precedence id="65" t1="14" t2="2" latency="1" distance="4"/>
+   <precedence id="66" t1="14" t2="4" latency="1" distance="4"/>
+   <precedence id="67" t1="14" t2="5" latency="1" distance="4"/>
+   <precedence id="68" t1="14" t2="7" latency="1" distance="4"/>
+   <precedence id="69" t1="14" t2="8" latency="1" distance="4"/>
+   <precedence id="70" t1="14" t2="10" latency="1" distance="4"/>
+   <precedence id="71" t1="14" t2="11" latency="1" distance="4"/>
+   <precedence id="72" t1="14" t2="13" latency="1" distance="4"/>
+   <precedence id="73" t1="14" t2="15" latency="1" distance="4"/>
+   <precedence id="74" t1="14" t2="17" latency="1" distance="4"/>
+   <precedence id="75" t1="14" t2="14" latency="1" distance="1"/>
+   <precedence id="76" t1="14" t2="21" latency="1" distance="0"/>
+   <precedence id="77" t1="14" t2="20" latency="0" distance="0"/>
+   <precedence id="78" t1="15" t2="16" latency="3" distance="0"/>
+   <precedence id="79" t1="15" t2="17" latency="1" distance="0"/>
+   <precedence id="80" t1="15" t2="21" latency="1" distance="0"/>
+   <precedence id="81" t1="15" t2="20" latency="0" distance="0"/>
+   <precedence id="82" t1="15" t2="14" latency="0" distance="1"/>
+   <precedence id="83" t1="16" t2="17" latency="1" distance="0"/>
+   <precedence id="84" t1="16" t2="21" latency="1" distance="0"/>
+   <precedence id="85" t1="16" t2="20" latency="0" distance="0"/>
+   <precedence id="86" t1="17" t2="21" latency="1" distance="0"/>
+   <precedence id="87" t1="17" t2="20" latency="0" distance="0"/>
+   <precedence id="88" t1="17" t2="14" latency="0" distance="1"/>
+   <precedence id="89" t1="18" t2="19" latency="1" distance="4"/>
+   <precedence id="90" t1="18" t2="18" latency="1" distance="1"/>
+   <precedence id="91" t1="18" t2="21" latency="1" distance="0"/>
+   <precedence id="92" t1="18" t2="20" latency="0" distance="0"/>
+   <precedence id="93" t1="19" t2="20" latency="3" distance="0"/>
+   <precedence id="94" t1="19" t2="21" latency="1" distance="0"/>
+   <precedence id="95" t1="19" t2="20" latency="0" distance="0"/>
+   <precedence id="96" t1="19" t2="18" latency="0" distance="1"/>
+   <precedence id="97" t1="20" t2="4" latency="1" distance="1"/>
+   <precedence id="98" t1="20" t2="7" latency="1" distance="1"/>
+   <precedence id="99" t1="20" t2="10" latency="1" distance="1"/>
+   <precedence id="100" t1="20" t2="13" latency="1" distance="1"/>
+   <precedence id="101" t1="20" t2="17" latency="1" distance="1"/>
+   <precedence id="102" t1="20" t2="21" latency="1" distance="0"/>
+   <precedence id="103" t1="21" t2="1" latency="0" distance="4"/>
+</precedences>
+</problem> 
