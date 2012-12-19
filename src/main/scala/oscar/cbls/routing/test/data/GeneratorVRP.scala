@@ -155,7 +155,7 @@ object InstanceVisualVRP {
   def getInstance(vrp: VRP, n: Int, xMax: Int, yMax: Int, seed: Int = 0): Array[Point] =
     n match {
       case 0 => random(vrp.N, xMax, yMax, seed)
-      case n => randomSameDepot(vrp.N, vrp.V, xMax, yMax, seed)
+      case _ => randomSameDepot(vrp.N, vrp.V, xMax, yMax, seed)
     }
 
   /**
@@ -172,7 +172,7 @@ object InstanceVisualVRP {
       case 0 => random(vrp.N, xMax, yMax, 1)
       case 1 => random(vrp.N, xMax, yMax, 1)
       case 2 => random(vrp.N, xMax, yMax, 2)
-      case n => randomSameDepot(vrp.N, vrp.V, xMax, yMax, n + 1)
+      case _ => randomSameDepot(vrp.N, vrp.V, xMax, yMax, n + 1)
     }
 
   /**
