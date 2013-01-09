@@ -61,7 +61,7 @@ object BelgiumInstance {
    * @return array of n random belgian towns.
    */
   def random(n: Int): Array[Point] = {
-    val random = Random.shuffle(Range(0, towns.length))
+    val random = Random.shuffle(0 to towns.length-1)
     val randomTowns: Array[Point] = new Array[Point](n)
     for (i <- Range(0, n)) randomTowns(i) = towns(random(i))
     randomTowns
