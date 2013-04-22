@@ -14,23 +14,23 @@
 <!--list all the cargos (i.e. chemical products with for each of them the volume to place -->
 <cargos nb="18">
   <cargo id="1" name="POLI(4+)ISOBUTYLENE" volume="1114"/>
-  <cargo id="2" name="TALLOW" volume="279"/>
+  <cargo id="2" name="TALLOW" volume="979"/>
   <cargo id="3" name="TALLOW" volume="1068"/>
-  <cargo id="4" name="ACETONE" volume="1267"/>
+  <cargo id="4" name="ACETONE" volume="1067"/>
   <cargo id="5" name="DIPROPYLENE GLYCOL" volume="381"/>  
   <cargo id="6" name="CORN OIL CRUDE DEGUMMD" volume="508"/>
-  <cargo id="7" name="CORN OIL CRUDE DEGUMMD" volume="581"/>
-  <cargo id="8" name="CORN OIL CRUDE DEGUMMD" volume="577"/>
-  <cargo id="9" name="DIGLYCIDYL ETHER OF BISPHENOL" volume="720"/>
-  <cargo id="10" name="MARPOL annex I petroleum oil" volume="1273"/>
-  <cargo id="11" name="Annex I oil" volume="1493"/>
-  <cargo id="12" name="Annex I oil" volume="394"/>
+  <cargo id="7" name="CORN OIL CRUDE DEGUMMD" volume="681"/>
+  <cargo id="8" name="CORN OIL CRUDE DEGUMMD" volume="677"/>
+  <cargo id="9" name="DIGLYCIDYL ETHER OF BISPHENOL" volume="820"/>
+  <cargo id="10" name="MARPOL annex I petroleum oil" volume="1073"/>
+  <cargo id="11" name="Annex I oil" volume="593"/>
+  <cargo id="12" name="Annex I oil" volume="594"/>
   <cargo id="13" name="ADIPONITRILE" volume="793"/>
   <cargo id="14" name="EPICHLOROHYDRIN" volume="450"/>
-  <cargo id="15" name="DIPHENYLMETHANE DIISOCYNATE " volume="826"/>
-  <cargo id="16" name="PROPYLENE OXIDE" volume="1491"/>
-  <cargo id="17" name="Glycerol, propoxylated and ethoxylated" volume="1527"/>
-  <cargo id="18" name="BUTANOIC ACID" volume="701"/>
+  <cargo id="15" name="DIPHENYLMETHANE DIISOCYNATE " volume="1026"/>
+  <cargo id="16" name="PROPYLENE OXIDE" volume="1291"/>
+  <cargo id="17" name="Glycerol, propoxylated and ethoxylated" volume="1227"/>
+  <cargo id="18" name="BUTANOIC ACID" volume="401"/>
 </cargos>
 <!--gives the pair of cargos that cannot be placed to adjacent/neighbour tanks -->
 <incompatibles>
@@ -383,20 +383,22 @@
    </tank> 
 </tanks>
 <!--pareto front when maximizing the number of free tanks and the empty space-->
-<pareto nb="7">
-	<solution freeTanks="11" emptySpace="4386">
+<pareto nb="8">
+	<solution freeTanks="12" emptySpace="4458">
 	</solution>
-	<solution freeTanks="10" emptySpace="4743">
+	<solution freeTanks="11" emptySpace="4785">
 	</solution>
-	<solution freeTanks="9" emptySpace="4908">
+	<solution freeTanks="10" emptySpace="5101">
 	</solution>
-	<solution freeTanks="8" emptySpace="5030">
+	<solution freeTanks="9" emptySpace="5290">
 	</solution>
-	<solution freeTanks="7" emptySpace="5104">
+	<solution freeTanks="8" emptySpace="5511">
 	</solution>
-	<solution freeTanks="6" emptySpace="5121">
+	<solution freeTanks="7" emptySpace="5666">
 	</solution>
-	<solution freeTanks="5" emptySpace="5131">
+	<solution freeTanks="6" emptySpace="5753">
+	</solution>
+	<solution freeTanks="5" emptySpace="5773">
 	</solution>
 </pareto>
 </problem>
