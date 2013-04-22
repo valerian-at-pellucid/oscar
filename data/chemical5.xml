@@ -12,34 +12,36 @@
 -->
 <problem>
 <!--list all the cargos (i.e. chemical products with for each of them the volume to place -->
-<cargos nb="15">
-  <cargo id="1" name="TALLOW" volume="979"/>
-  <cargo id="2" name="TALLOW" volume="1068"/>
-  <cargo id='3' name="DIPROPYLENE GLYCOL" volume="381"/>  
-  <cargo id="4" name="CORN OIL CRUDE DEGUMMD" volume="508"/>
-  <cargo id="5" name="CORN OIL CRUDE DEGUMMD" volume="581"/>
-  <cargo id="6" name="Annex I oil" volume="593"/>
-  <cargo id="7" name="Annex I oil" volume="594"/>
-  <cargo id="8" name="ADIPONITRILE" volume="793"/>
-  <cargo id="9" name="EPICHLOROHYDRIN" volume="450"/>
-  <cargo id="10" name="DIPHENYLMETHANE DIISOCYNATE " volume="826"/>
-  <cargo id="11" name="PROPYLENE OXIDE" volume="1491"/>
-  <cargo id="12" name="Glycerol, propoxylated and ethoxylated" volume="1527"/>
-  <cargo id="13" name="BUTANOIC ACID" volume="701"/>
-  <cargo id="14" name="Glycerol/sucrose blend propoxylated and ethoxylated" volume="673"/>
-  <cargo id="15" name="N-METHYL-2-PYRROLIDONE" volume="552"/>
+<cargos nb="18">
+  <cargo id="1" name="POLI(4+)ISOBUTYLENE" volume="1114"/>
+  <cargo id="2" name="TALLOW" volume="279"/>
+  <cargo id="3" name="TALLOW" volume="1068"/>
+  <cargo id="4" name="ACETONE" volume="1267"/>
+  <cargo id="5" name="DIPROPYLENE GLYCOL" volume="381"/>  
+  <cargo id="6" name="CORN OIL CRUDE DEGUMMD" volume="508"/>
+  <cargo id="7" name="CORN OIL CRUDE DEGUMMD" volume="581"/>
+  <cargo id="8" name="CORN OIL CRUDE DEGUMMD" volume="577"/>
+  <cargo id="9" name="DIGLYCIDYL ETHER OF BISPHENOL" volume="720"/>
+  <cargo id="10" name="MARPOL annex I petroleum oil" volume="1273"/>
+  <cargo id="11" name="Annex I oil" volume="1493"/>
+  <cargo id="12" name="Annex I oil" volume="394"/>
+  <cargo id="13" name="ADIPONITRILE" volume="793"/>
+  <cargo id="14" name="EPICHLOROHYDRIN" volume="450"/>
+  <cargo id="15" name="DIPHENYLMETHANE DIISOCYNATE " volume="826"/>
+  <cargo id="16" name="PROPYLENE OXIDE" volume="1491"/>
+  <cargo id="17" name="Glycerol, propoxylated and ethoxylated" volume="1527"/>
+  <cargo id="18" name="BUTANOIC ACID" volume="701"/>
 </cargos>
 <!--gives the pair of cargos that cannot be placed to adjacent/neighbour tanks -->
 <incompatibles>
-   <incompatible cargo1="2"  cargo2="8"/>
-   <incompatible cargo1="1" cargo2="3"/>
-   <incompatible cargo1="3" cargo2="8"/>
-   <incompatible cargo1="2" cargo2="3"/>
-   <incompatible cargo1="1" cargo2="10"/>
+   <incompatible cargo1="5"  cargo2="15"/>
+   <incompatible cargo1="14" cargo2="18"/>
+   <incompatible cargo1="15" cargo2="18"/>
+   <incompatible cargo1="16" cargo2="18"/>
 </incompatibles>
 <!--list all the tanks with for each of them it's capacity, location on the vessel, the cargo that cannot be placed inside and the adjacent/neighbour tanks -->
 <tanks nb="34">
-   <tank id="1" capa="500" x="6" y="18" w="6" h="2">
+   <tank id="1" capa="1080" x="6" y="18" w="6" h="2">
       <impossiblecargos>
          <cargo id="1"/>
          <cargo id="10"/>
@@ -50,7 +52,7 @@
          <tank id="3"/>
       </neighbours>
    </tank>
-   <tank id="2" capa="674" x="0" y="18" w="6" h="2">
+   <tank id="2" capa="374" x="0" y="18" w="6" h="2">
       <impossiblecargos>
          <cargo id="1"/>
          <cargo id="10"/>
@@ -61,7 +63,7 @@
          <tank id="4"/>
       </neighbours>      
    </tank>   
-   <tank id="3" capa="949" x="6" y="16" w="6" h="2">
+   <tank id="3" capa="1549" x="6" y="16" w="6" h="2">
       <impossiblecargos>
          <cargo id="1"/>
          <cargo id="10"/>
@@ -72,7 +74,7 @@
          <tank id="4"/>
       </neighbours>       
    </tank>   
-   <tank id="4" capa="949" x="0" y="16" w="6" h="2">
+   <tank id="4" capa="1549" x="0" y="16" w="6" h="2">
       <impossiblecargos>
          <cargo id="1"/>
          <cargo id="10"/>
@@ -83,7 +85,7 @@
          <tank id="3"/>
       </neighbours>       
    </tank>
-   <tank id="5" capa="316" x="9" y="14" w="3" h="2">
+   <tank id="5" capa="216" x="9" y="14" w="3" h="2">
       <impossiblecargos>
          <cargo id="1"/>
          <cargo id="10"/>
@@ -94,7 +96,7 @@
          <tank id="9"/>
       </neighbours>       
    </tank>
-   <tank id="6" capa="420" x="6" y="14" w="3" h="2">
+   <tank id="6" capa="320" x="6" y="14" w="3" h="2">
       <impossiblecargos>
       </impossiblecargos>
       <neighbours>
@@ -103,7 +105,7 @@
          <tank id="10"/>
       </neighbours>       
    </tank>
-   <tank id="7" capa="431" x="3" y="14" w="3" h="2">
+   <tank id="7" capa="231" x="3" y="14" w="3" h="2">
       <impossiblecargos>
       </impossiblecargos>
       <neighbours>
@@ -112,7 +114,7 @@
          <tank id="11"/>
       </neighbours>       
    </tank>
-   <tank id="8" capa="316" x="0" y="14" w="3" h="2">
+   <tank id="8" capa="216" x="0" y="14" w="3" h="2">
       <impossiblecargos>
          <cargo id="1"/>
          <cargo id="10"/>
@@ -123,7 +125,7 @@
          <tank id="12"/>
       </neighbours> 
    </tank>
-   <tank id="9" capa="382" x="9" y="12" w="3" h="2">
+   <tank id="9" capa="282" x="9" y="12" w="3" h="2">
       <impossiblecargos>
          <cargo id="1"/>
          <cargo id="10"/>
@@ -210,7 +212,7 @@
          <tank id="15"/>
       </neighbours>       
    </tank>
-   <tank id="17" capa="853" x="9" y="8" w="3" h="2">
+   <tank id="17" capa="1253" x="9" y="8" w="3" h="2">
       <impossiblecargos>
          <cargo id="1"/>
          <cargo id="10"/>
@@ -246,7 +248,7 @@
          <tank id="19"/>
       </neighbours>       
    </tank>
-   <tank id="21" capa="250" x="9" y="6" w="3" h="2">
+   <tank id="21" capa="372" x="9" y="6" w="3" h="2">
       <impossiblecargos>
          <cargo id="1"/>
          <cargo id="10"/>
@@ -275,7 +277,7 @@
          <tank id="27"/>
       </neighbours>       
    </tank>
-   <tank id="24" capa="200" x="0" y="6" w="3" h="2">
+   <tank id="24" capa="372" x="0" y="6" w="3" h="2">
       <impossiblecargos>
          <cargo id="1"/>
          <cargo id="10"/>
@@ -372,7 +374,7 @@
          <tank id="34"/>
       </neighbours>       
    </tank>      
-   <tank id="34" capa="500" x="0" y="0" w="6" h="2">
+   <tank id="34" capa="1017" x="0" y="0" w="6" h="2">
       <impossiblecargos>
       </impossiblecargos>
       <neighbours>
