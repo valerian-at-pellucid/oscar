@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU Lesser General Public License along with OscaR.
  * If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  ******************************************************************************/
-package oscar.cbls.routing.test.data
+package oscar.examples.cbls.data
 
 /*******************************************************************************
  * This file is part of OscaR (Scala in OR).
@@ -55,7 +55,7 @@ class Point(val name: String, val long: Double, val lat: Double)
 class BelgiumInstance {
   var towns: List[Point] = List.empty
   val path = new File("").getAbsolutePath
-  var file = Source.fromFile(path + "\\src\\main\\scala\\oscar\\cbls\\routing\\test\\data\\villesbelgique")
+  var file = Source.fromFile(path + "/src/main/scala/oscar/examples/cbls/data/villesbelgique")
   for (line <- file.getLines()) {
     val words = line.split(" ")
     if (words.length == 8)
