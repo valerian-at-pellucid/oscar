@@ -59,7 +59,7 @@ class BelgiumInstance {
   for (line <- file.getLines()) {
     val words = line.split(" ")
     if (words.length == 8)
-      towns = new Point(words(1).toString, words(6).toDouble, words(7).toDouble) :: towns
+      towns = new Point(words(1), words(6).toDouble, words(7).toDouble) :: towns
   }
 }
 
