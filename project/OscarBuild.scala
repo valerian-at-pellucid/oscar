@@ -2,198 +2,169 @@ package oscar
 
 import sbt._
 import sbt.Keys._
-import java.lang.Boolean.getBoolean
-import de.johoop.jacoco4sbt.JacocoPlugin._
-import xerial.sbt.Pack._
-import sbtunidoc.Plugin._
 
 
-object OscarBuild extends Build {
+object Resolvers {
+  val typesafe = Seq(
+    "Typesafe repository snapshots" at "http://repo.typesafe.com/typesafe/snapshots/",
+    "Typesafe repository releases" at "http://repo.typesafe.com/typesafe/releases/"
+  )
 
-  
-  
-  object BuildSettings {
-    val buildOrganization = "oscar"
-    val buildVersion = "1.1.0"
-    val buildScalaVersion = "2.11.0"
-    val buildSbtVersion= "0.13.0"
-
-    val osNativeLibDir = (sys.props("os.name"), sys.props("os.arch")) match {
-    case (os, arch) if os.contains("Mac") && arch.endsWith("64") => "macos64"
-    case (os, arch) if os.contains("Linux") && arch.endsWith("64") => "linux64"
-    case (os, arch) if os.contains("Windows") && arch.endsWith("32") => "windows32"
-    case (os, arch) if os.contains("Windows") && arch.endsWith("64") => "windows64"
-    case (os, arch) => sys.error("Unsupported OS [${os}] Architecture [${arch}] combo, OscaR currently supports macos64, linux64, windows32, windows64")
+  val resolversList = typesafe
 }
 
-    val buildSettings = Defaults.defaultSettings ++ Seq(
-      organization := buildOrganization,
-      version := buildVersion,
-      scalacOptions in Compile ++= Seq("-encoding", "UTF-8", "-deprecation", "-feature", "-unchecked", "-Xdisable-assertions"),
-      testOptions in Test <+= (target in Test) map {
-          t => Tests.Argument(TestFrameworks.ScalaTest, "junitxml(directory=\"%s\")" format (t / "test-reports")) },
-      parallelExecution in Test := false,
-      fork in Test := true,
-      javaOptions in Test += "-Djava.library.path=../lib:../lib/" + osNativeLibDir,
-      unmanagedBase <<= baseDirectory { base => base / "../lib/" }, // unfortunately does not work
-      unmanagedClasspath in Compile <+= (baseDirectory) map { bd => Attributed.blank(bd / "../lib/") },
-      scalaVersion := buildScalaVersion)
-  }
+object Dependencies {
+  import sbt._
 
-  object Resolvers {
-    val typesafe = "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
-    val artifactory = "Artifactory" at "http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases"
-    val sbtResolvers = Seq (artifactory)
-  }
 
-  object Dependencies {
+  val jfreechart = "org.jfree" % "jfreechart" % "1.0.14"
+  val swingx     = "org.swinglabs" % "swingx" % "1.6.1"
+  val swingxWS   = "org.swinglabs" % "swingx-ws" % "1.0"
 
-    //val scalatest = "org.scalatest" %% "scalatest" % "2.0.M5b"
-    val junit = "junit" % "junit" % "4.8.1" % "test"
-    val scalaswing = "org.scala-lang" % "scala-swing" % "2.11.0-M7"
+  val jsci = "net.sf.jsci" % "jsci" % "1.2"
 
-    // DSL for adding source dependencies ot projects.
-    def dependsOnSource(dir: String): Seq[Setting[_]] = {
-      import Keys._
-      Seq(unmanagedSourceDirectories in Compile <<= (unmanagedSourceDirectories in Compile, baseDirectory in ThisBuild) { (srcDirs, base) => (base / dir ) +: srcDirs },
-          unmanagedJars in Compile <++= (baseDirectory in ThisBuild) map { base =>
-          	val libs = base / dir
-          	val dirs = libs // (libs / "batik") +++ (libs / "libtw") +++ (libs / "kiama")
-          	(dirs ** "*.jar").classpath
-      	   },
-          
-          unmanagedSourceDirectories in Test <<= (unmanagedSourceDirectories in Test, baseDirectory in ThisBuild) { (srcDirs, base) => (base / dir ) +: srcDirs })
+  val junit = "junit" % "junit" % "4.8.1"
+  val scalaTest  = "org.scalatest" %% "scalatest" % "2.2.1"
+  val scalaCheck = "org.scalacheck" %% "scalacheck" % "1.11.5"
+
+  val testDependencies = Seq(
+    scalaTest % "test",
+    scalaCheck % "test",
+    junit % "test"
+  )
+
+  val oscarVisualDependencies = Seq(
+    jfreechart,
+    swingx,
+    swingxWS
+  )
+}
+
+object BuildSettings {
+  val buildOrganization = "oscar"
+  val buildVersion = "1.1.0.1"
+  val buildScalaVersion = "2.11.2"
+
+  val buildSettings = Defaults.defaultSettings ++ Seq(
+    resolvers ++= Resolvers.resolversList,
+    organization := buildOrganization,
+    version := buildVersion,
+    licenses += ("LGPL-3.0", url("http://www.gnu.org/licenses/lgpl.html")),
+    //scalacOptions in Compile ++= Seq("-encoding", "UTF-8", "-deprecation", "-feature", "-unchecked", "-Xdisable-assertions"),
+    //testOptions in Test <+= (target in Test) map {
+    //  t => Tests.Argument(TestFrameworks.ScalaTest, "junitxml(directory=\"%s\")" format (t / "test-reports")) },
+    parallelExecution in Test := false,
+    fork in Test := true,
+    //javaOptions in Test += "-Djava.library.path=../lib:../lib/" + osNativeLibDir,
+    //unmanagedBase <<= baseDirectory { base => base / "../lib/" }, // unfortunately does not work
+    //unmanagedClasspath in Compile <+= (baseDirectory) map { bd => Attributed.blank(bd / "../lib/") },
+    scalaVersion := "2.11.2",
+    crossScalaVersions := Seq("2.11.2", "2.10.4"),
+    libraryDependencies := {
+      CrossVersion.partialVersion(scalaVersion.value) match {
+        // if scala 2.11+ is used, add dependency on scala-xml module
+        case Some((2, scalaMajor)) if scalaMajor >= 11 =>
+          Seq(
+            "org.scala-lang.modules" %% "scala-xml" % "1.0.2",
+            "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.1",
+            "org.scala-lang.modules" %% "scala-swing" % "1.0.1")
+        case _ =>
+          // or just libraryDependencies.value if you don't depend on scala-swing
+          Seq("org.scala-lang" % "scala-swing" % scalaVersion.value)
+      }
     }
-    implicit def p2source(p: Project): SourceDepHelper = new SourceDepHelper(p)
-    final class SourceDepHelper(p: Project) {
-      def dependsOnSource(dir: String): Project =
-        p.settings(Dependencies.dependsOnSource(dir): _*)
-    }
+  ) ++ bintray.Plugin.bintrayPublishSettings
 
-  }
-  
-  import BuildSettings._
-  import Dependencies._
-  import Resolvers._
 
-  val commonDeps = Seq(/*scalatest,*/junit,scalaswing)
-  
- 
-  TaskKey[Unit]("zipsrc") <<= baseDirectory map { bd => println(bd); IO.zip(Path.allSubpaths(new File(bd + "/src/main/scala")),new File(bd +"/oscar-src.zip"))  }
-    
-  val hello = TaskKey[Unit]("hello", "hello documentation")
-  
-  val helloTask = hello := {
-    println("Hello World")
-  }
-  
-    
-  val printLinprog = TaskKey[Unit]("printLinprog", "printLinProg")
-  
-  val printLinprogTask = printLinprog := {
-    println("base "+baseDirectory)
-    
-    println(baseDirectory.map { base => base })
-  }  
-  
-  val zipsrc = TaskKey[Unit]("zipsrc","zip the source") <<= baseDirectory map { bd => println(bd); IO.zip(Path.allSubpaths(new File(bd + "/src/main/scala")),new File(bd +"/oscar-src.zip"))  }
+  lazy val scalaModuleDependencies = buildSettings ++ Seq (
+    scalaVersion := "2.11.1"
 
-  val foo = TaskKey[Unit]("foo","foo task") <<= baseDirectory map { bd => println(bd)}
 
-  val commonTasks = Seq(helloTask,foo,zipsrc,printLinprogTask)
-  
-  //
-  lazy val jacoco_settings = Defaults.defaultSettings ++ Seq(jacoco.settings: _*)
-  //jacoco.reportFormats in jacoco.Config := Seq(XMLReport("utf-8"), HTMLReport("utf-8"))
-  
-  
+  )
+}
+
+
+object OscarBuild2 extends Build {
+
   lazy val oscar = Project(
     id = "oscar",
     base = file("."),
-    //
-    settings = buildSettings ++ jacoco_settings ++ 
-               packSettings ++ unidocSettings ++ 
-               Seq (/*resolvers := sbtResolvers,*/ libraryDependencies ++= commonDeps) ++ 
-               sbtassembly.Plugin.assemblySettings ++ 
-               commonTasks,
-    aggregate = Seq(oscarVisual,oscarCp,oscarCbls,oscarLinprog,oscarDes,oscarDfo),
-    dependencies = Seq(oscarCp,oscarCbls,oscarDes,oscarDfo,oscarLinprog)) dependsOnSource("lib")    
-    
+    settings = BuildSettings.buildSettings,
+    aggregate = Seq(oscarVisual, oscarCp, oscarCbls, /*oscarLinprog,*/ oscarDes, oscarDfo),
+    dependencies = Seq(oscarCp, oscarCbls, oscarDes, oscarDfo /*,oscarLinprog*/))
+
   lazy val oscarCbls = Project(
     id = "oscar-cbls",
     base = file("oscar-cbls"),
-    settings = buildSettings ++ jacoco_settings ++ Seq(libraryDependencies ++= commonDeps) ++
-    		   sbtassembly.Plugin.assemblySettings ++ 
-    		   commonTasks,
-    dependencies = Seq(oscarVisual)) dependsOnSource("lib")       
-    
+    settings = BuildSettings.buildSettings ++ Seq(
+      libraryDependencies ++= Dependencies.testDependencies
+    ),
+    dependencies = Seq(oscarVisual))
+
   lazy val oscarCp = Project(
     id = "oscar-cp",
     base = file("oscar-cp"),
-    settings = buildSettings ++ jacoco_settings ++ Seq(libraryDependencies ++= commonDeps) ++
-    		   sbtassembly.Plugin.assemblySettings ++ 
-    		   commonTasks,
-    dependencies = Seq(oscarAlgo,oscarVisual)) dependsOnSource("lib") 
-    
+    settings = BuildSettings.scalaModuleDependencies ++ Seq(
+      libraryDependencies ++= Dependencies.testDependencies
+    ),
+    dependencies = Seq(oscarAlgo, oscarVisual))
+
   lazy val oscarDes = Project(
     id = "oscar-des",
     base = file("oscar-des"),
-    settings = buildSettings ++ jacoco_settings ++ Seq(libraryDependencies ++= commonDeps) ++ 
-     		   sbtassembly.Plugin.assemblySettings ++    		   
-               commonTasks,
-    dependencies = Seq(oscarInvariants)) dependsOnSource("lib")     
-    
+    settings = BuildSettings.buildSettings ++ Seq(
+      libraryDependencies ++= Seq(Dependencies.jsci)
+    ),
+    dependencies = Seq(oscarInvariants))
+
   lazy val oscarDfo = Project(
     id = "oscar-dfo",
     base = file("oscar-dfo"),
-    settings = buildSettings ++ jacoco_settings ++ Seq(libraryDependencies ++= commonDeps) ++ 
-               sbtassembly.Plugin.assemblySettings ++ 
-               commonTasks,
-    dependencies = Seq(oscarAlgebra,oscarVisual,oscarAlgo)) dependsOnSource("lib")       
-    
-  lazy val oscarLinprog = Project( 
+    settings = BuildSettings.buildSettings ++ Seq(
+      libraryDependencies ++= Dependencies.testDependencies
+    ),
+    dependencies = Seq(oscarAlgebra, oscarVisual, oscarAlgo))
+
+  /*
+  lazy val oscarLinprog = Project(
     id = "oscar-linprog",
     base = file("oscar-linprog"),
-    settings = buildSettings ++ jacoco_settings ++ Seq(libraryDependencies ++= commonDeps) ++ 
-               sbtassembly.Plugin.assemblySettings ++ 
-               commonTasks,
+    settings = BuildSettings.buildSettings ++ Seq(
+      libraryDependencies ++= Seq(Dependencies.glpkJava)
+    ),
     dependencies = Seq(oscarAlgebra)
-    ) dependsOnSource("lib")
-    
+  )
+*/
 
   lazy val oscarAlgo = Project(
     id = "oscar-algo",
-    settings = buildSettings ++ jacoco_settings ++ Seq (libraryDependencies ++= commonDeps) 
-               ++ commonTasks,    
+    settings = BuildSettings.buildSettings,
     base = file("oscar-algo"),
-    dependencies= Seq(oscarUtil,oscarVisual)) dependsOnSource("lib")
-    
+    dependencies= Seq(oscarUtil,oscarVisual))
+
   lazy val oscarVisual = Project(
     id = "oscar-visual",
-    settings = buildSettings ++ jacoco_settings ++ Seq (libraryDependencies ++= commonDeps) ++ 
-               commonTasks,    
+    settings = BuildSettings.scalaModuleDependencies ++ Seq(
+      libraryDependencies ++= Dependencies.oscarVisualDependencies
+    ),
     base = file("oscar-visual"),
-    dependencies= Seq(oscarUtil)) dependsOnSource("lib")      
+    dependencies= Seq(oscarUtil))
 
   lazy val oscarInvariants = Project(
     id = "oscar-invariants",
-    settings = buildSettings ++ jacoco_settings ++ Seq (libraryDependencies ++= commonDeps) ++ commonTasks,    
-    base = file("oscar-invariants")) dependsOnSource("lib")     
- 
- 
+    settings = BuildSettings.buildSettings,
+    base = file("oscar-invariants"))
+
   lazy val oscarAlgebra = Project(
     id = "oscar-algebra",
-    settings = buildSettings ++ jacoco_settings ++ Seq (libraryDependencies ++= commonDeps) ++ commonTasks,    
-    base = file("oscar-algebra")) dependsOnSource("lib")     
+    settings = BuildSettings.buildSettings,
+    base = file("oscar-algebra"))
 
-      
-    
   lazy val oscarUtil = Project(
     id = "oscar-util",
-    settings = buildSettings ++ jacoco_settings ++ Seq (libraryDependencies ++= commonDeps) ++ commonTasks,    
-    base = file("oscar-util")) dependsOnSource("lib")       
-    
+    settings = BuildSettings.scalaModuleDependencies,
+    base = file("oscar-util")
+  )
 
-    
-  
 }
+*/
