@@ -90,8 +90,7 @@ object OscarBuild2 extends Build {
     id = "oscar",
     base = file("."),
     settings = BuildSettings.buildSettings,
-    aggregate = Seq(oscarVisual, oscarCp, oscarCbls, /*oscarLinprog,*/ oscarDes, oscarDfo),
-    dependencies = Seq(oscarCp, oscarCbls, oscarDes, oscarDfo /*,oscarLinprog*/))
+    aggregate = Seq(oscarVisual, oscarCp, oscarCbls, /*oscarLinprog,*/ oscarDes, oscarDfo))
 
   lazy val oscarCbls = Project(
     id = "oscar-cbls",
@@ -167,4 +166,3 @@ object OscarBuild2 extends Build {
   )
 
 }
-*/
